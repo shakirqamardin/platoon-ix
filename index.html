@@ -452,7 +452,7 @@
         <header class="header">
             <div class="header-content">
                 <div class="logo">
-                    <img src="platoonix-logo.png" alt="∞" style="height: 30px;">
+                    PLAT<img src="infinity-logo.png" alt="∞" style="height: 32px; margin: 0 2px; vertical-align: middle;">NIX
                 </div>
                 <div class="role-toggle">
                     <button class="role-btn active" id="haulierBtn" onclick="switchRole('haulier')">Haulier</button>
@@ -520,7 +520,7 @@
 
         <footer>
             <div style="font-size: 1.25rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 0.5rem; display: flex; justify-content: center; align-items: center;">
-                <img src="platoonix-logo.png" alt="PLATOONIX" style="height: 30px;">
+                <span style="color: white;">PLAT</span><span style="font-size: 1.25rem; color: #5dcdcb; margin: 0 -2px; display: inline-block;">∞</span><span style="color: white;">NIX</span>
             </div>
             <p>Direct Haulier-Distributor Platform • Pilot Version</p>
         </footer>
@@ -651,6 +651,19 @@
                                 <label for="cert-${cert.replace(/\s+/g, '-')}">${cert}</label>
                             </div>
                         `).join('')}
+                    </div>
+                </div>
+ <div class="form-group">
+                    <label class="form-label">Vehicle Compliance (London & Clean Air Zones)</label>
+                    <div style="background: #f0f9ff; padding: 1rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                        <div class="checkbox-item" style="margin-bottom: 0.75rem;">
+                            <input type="checkbox" name="ulezCompliant" id="ulez-check">
+                            <label for="ulez-check" style="flex: 1;"><strong>✅ ULEZ Compliant</strong><div style="font-size: 0.85rem; color: #64748b; margin-top: 0.25rem;">Can deliver in London (Euro 6 diesel / Euro 4 petrol)</div></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="cazCompliant" id="caz-check">
+                            <label for="caz-check" style="flex: 1;"><strong>✅ Clean Air Zone Compliant</strong><div style="font-size: 0.85rem; color: #64748b; margin-top: 0.25rem;">Can enter Birmingham, Bath, Bristol, Portsmouth, Sheffield, Newcastle (Euro 6)</div></label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
