@@ -497,16 +497,6 @@
                         </div>
                     </label>
                 </div>
-<div class="card">
-                    <h2>📥 Export Data</h2>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <button onclick="downloadJourneysCSV()" class="btn btn-primary">Download Journeys CSV</button>
-                        <button onclick="downloadLoadsCSV()" class="btn btn-primary">Download Loads CSV</button>
-                    </div>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b;">
-                        Export your data to import into Google Sheets for tracking
-                    </p>
-                </div>
 
                 <div class="card">
                     <h2 id="manualTitle">🚛 Manual Entry</h2>
@@ -744,7 +734,7 @@
             `;
         }
 
-        function handleSubmit(e) 
+        function handleSubmit(e) {
             e.preventDefault();
             const formData = new FormData(e.target);
             
@@ -761,52 +751,7 @@
                     returnPostcode: formData.get('returnPostcode'),
                     returnTime: formData.get('returnTime'),
                     status: 'Available'
-                };// CSV Export Functions
-        function downloadJourneysCSV() {
-            if (journeys.length === 0) {
-                alert('No journeys to export');
-                return;
-            }
-            
-            const headers = 'Date,Journey ID,Vehicle,Vehicle Type,Capacity,Pallets,Certifications,ULEZ,CAZ,Destination,Return Postcode,Return Time\n';
-            const rows = journeys.map(j => {
-                const date = new Date().toISOString().split('T')[0];
-                const certs = j.certifications?.join('; ') || '';
-                const ulez = j.ulezCompliant ? 'Yes' : 'No';
-                const caz = j.cazCompliant ? 'Yes' : 'No';
-                return `${date},${j.id},${j.vehicle},${j.vehicleType},${j.capacity},${j.pallets},"${certs}",${ulez},${caz},${j.destination},${j.returnPostcode},${j.returnTime}`;
-            }).join('\n');
-            
-            downloadCSV(headers + rows, 'platoonix_journeys.csv');
-        }
-        
-        function downloadLoadsCSV() {
-            if (loads.length === 0) {
-                alert('No loads to export');
-                return;
-            }
-            
-            const headers = 'Date,Load ID,Reference,Pickup,Delivery,Weight,Pallets,Load Type,Requirements,Price\n';
-            const rows = loads.map(l => {
-                const date = new Date().toISOString().split('T')[0];
-                const reqs = l.requirements?.join('; ') || '';
-                return `${date},${l.id},${l.reference},${l.pickupPostcode},${l.deliveryPostcode},${l.weight},${l.pallets},${l.loadType},"${reqs}",${l.price}`;
-            }).join('\n');
-            
-            downloadCSV(headers + rows, 'platoonix_loads.csv');
-        }
-        
-        function downloadCSV(content, filename) {
-            const blob = new Blob([content], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }
+                };
                 journeys.push(journey);
             } else {
                 const requirements = formData.getAll('requirements');
